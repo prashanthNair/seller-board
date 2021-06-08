@@ -48,7 +48,7 @@ deploy_dev:
   extends: .deploy_aws
   stage: run
   dependencies:
-    - yarn_dev
+    - brand_dev
   before_script:
     - export S3_BUCKET=${S3_BUCKET_DEV}
   only:
