@@ -1,4 +1,3 @@
-
 cache:
   paths:
     - node_modules
@@ -6,12 +5,6 @@ cache:
 stages:
   - build
   - run
-
-variables:
-  S3_BUCKET_DEV: ${BUCKET_DEV}
-  S3_BUCKET_PROD: ${BUCKET_PROD}
-  AWS_ACCESS_KEY_ID: "AKIAZYADTUF37CUMVZ3Z"
-  AWS_SECRET_ACCESS_KEY: "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"
 
 .build:
   image: node:10
@@ -45,8 +38,7 @@ brand_prod:
   when: manual
   script: |
     pip install awscli #Install awscli tools
-    aws s3 sync ./build/ s3://mib-s3
-    # aws s3 cp ./ s3://$BUCKET_DEV/ --recursive --exclude "*" --include "*.html"
+    aws s3 sync ./build/ s3://${S3_BUCKET_DEV}
 
 deploy_dev:
   extends: .deploy_aws
@@ -54,7 +46,7 @@ deploy_dev:
   dependencies:
     - brand_dev
   before_script:
-    - export S3_BUCKET=arn:aws:s3:::mib-s3
+    - export S3_BUCKET=${S3_BUCKET_DEV}
   only:
     refs:
       - dev
@@ -65,7 +57,7 @@ deploy_prod:
   dependencies:
     - brand_prod
   before_script:
-    - export S3_BUCKET=arn:aws:s3:::mib-s3
+    - export S3_BUCKET=${S3_BUCKET_PROD}
   only:
     refs:
       - master
