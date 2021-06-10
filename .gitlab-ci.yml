@@ -42,7 +42,8 @@ brand_prod:
   when: manual
   script: |
     pip install awscli #Install awscli tools
-    aws s3 sync ./build/ s3://${S3_BUCKET_DEV}
+    aws s3 sync ./build/ s3://${BUCKET_DEV}
+    # aws s3 cp ./ s3://$BUCKET_DEV/ --recursive --exclude "*" --include "*.html"
 
 deploy_dev:
   extends: .deploy_aws
@@ -50,7 +51,7 @@ deploy_dev:
   dependencies:
     - brand_dev
   before_script:
-    - export S3_BUCKET=${S3_BUCKET_DEV}
+    - export S3_BUCKET=${BUCKET_DEV}
   only:
     refs:
       - dev
@@ -61,7 +62,7 @@ deploy_prod:
   dependencies:
     - brand_prod
   before_script:
-    - export S3_BUCKET=${S3_BUCKET_PROD}
+    - export S3_BUCKET=${BUCKET_PROD}
   only:
     refs:
       - master
