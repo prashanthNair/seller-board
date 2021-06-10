@@ -38,7 +38,7 @@ brand_prod:
   when: manual
   script: |
     pip install awscli #Install awscli tools
-    aws s3 sync ./build/ s3://mib-s3
+    aws s3 sync ./build/ s3://mib-s3-prod
 
 deploy_dev:
   extends: .deploy_aws
