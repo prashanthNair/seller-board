@@ -1,3 +1,4 @@
+
 cache:
   paths:
     - node_modules
@@ -9,6 +10,8 @@ stages:
 variables:
   S3_BUCKET_DEV: ${BUCKET_DEV}
   S3_BUCKET_PROD: ${BUCKET_PROD}
+  AWS_ACCESS_KEY_ID: "AKIAZYADTUF37CUMVZ3Z"
+  AWS_SECRET_ACCESS_KEY: "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"
 
 .build:
   image: node:10
