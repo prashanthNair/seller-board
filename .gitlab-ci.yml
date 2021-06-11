@@ -46,7 +46,7 @@ deploy_dev:
   dependencies:
     - brand_dev
   before_script:
-    - export S3_BUCKET=mib-s3
+    - export S3_BUCKET=mib-s3-prod
   only:
     refs:
       - dev
