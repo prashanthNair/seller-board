@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';  
+import React, { useState, useEffect } from 'react';  
 import Dropdown, { IDropdownOptionData } from '../components/Dropdown';
 export type DataType = "list" | "text" | "number";
 export interface IListData {
@@ -35,7 +35,7 @@ export const useDynamic = (props: IUseComponentTreeProps): JSX.Element[] | undef
     const [component, setComponent] = useState<JSX.Element[]>();
 
     useEffect(() => {
-        const tree = data.map(el => {
+        const tree = data.forEach(el => {
             switch(el.dataType) {
                 case 'list': 
                     const option: IDropdownOptionData[] = el.data.map(({ name: label, value }) => { return { label, value } });

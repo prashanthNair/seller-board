@@ -10,7 +10,6 @@ import logo from '../../assets/BrandsLogo.svg'
 
 const Header: React.FC = (props) => {
 
-    const [ isAuthenticated, setAuthenticated ] = useState<boolean>(true);
     const [notificationWindowOpen, setNotificationWindowOpen] = useState<boolean>(false);
 
     useEffect(() => {

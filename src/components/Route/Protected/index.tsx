@@ -13,7 +13,11 @@ const ProtectedRoute: React.FC<IProtectedRouteProps> = (props) => {
         // TODO: Implement auth logic.
     }, []);
 
-    return isAuthenticated ? <Route {...props} /> : <Redirect to={fallbackRedirect} />
+    if (isAuthenticated) {
+        return <Route {...props} />
+    } else {
+        return <Redirect to={fallbackRedirect} />
+    }
 }
 
 export default ProtectedRoute;
