@@ -35,7 +35,7 @@ export const useDynamic = (props: IUseComponentTreeProps): JSX.Element[] | undef
     const [component, setComponent] = useState<JSX.Element[]>();
 
     useEffect(() => {
-        const tree = data.forEach(el => {
+        const tree = data.map(el => {
             switch(el.dataType) {
                 case 'list': 
                     const option: IDropdownOptionData[] = el.data.map(({ name: label, value }) => { return { label, value } });
